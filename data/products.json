@@ -6,7 +6,7 @@
     "description": "New Book",
     "cat": "Book",
     "count": 10,
-    "image": "images/book.jfif"
+    "image": "/images/book.jfif"
   },
   {
     "title": "Book 2",
@@ -15,6 +15,6 @@
     "description": "New Book",
     "cat": "Book",
     "count": 10,
-    "image": "images/book.jfif"
+    "image": "/images/book.jfif"
   }
 ]
