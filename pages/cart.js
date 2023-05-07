@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { CartContext } from "../context/Cart";
+import dynamic from "next/dynamic"
 
 import Layout from "../components/Layout";
 
@@ -64,7 +65,7 @@ const CartPage = () => {
               {cartItems.reduce((acc, cur) => acc + cur.qty * cur.price, 0)}
             </div>
             <div
-              onClick={() => router.push("/shipping")}
+              onClick={() => router.push(`login?redirect=/shipping`)}
               className="rounded-xl bg-gray-700 text-white px-4 py-2"
             >
               Checkout
@@ -76,4 +77,4 @@ const CartPage = () => {
   );
 };
 
-export default CartPage;
+export default dynamic(() => Promise.resolve(CartPage), { ssr: false });
