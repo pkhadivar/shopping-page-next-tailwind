@@ -1,4 +1,10 @@
 import NextAuth from "next-auth/next";
+import CredentialsProvider from "next-auth/providers/credentials"
+
+import bcrypt from "bcryptjs"
+
+import db from "../../../utils/db"
+import User from "../../../models/user "
 
 export default NextAuth({
   session: {
@@ -13,5 +19,36 @@ export default NextAuth({
 
       return token;
     },
+
+    async session({ session, token }) {
+        if (token?._id) session.user._id = token._id
+
+        if (token?.isAdmin) session.user.isAdmin = token.isAdmin
+
+        return token
+    }
   },
+
+  providers: [
+        CredentialsProvider({
+            async authorize(credentials) {
+                await db.connect(credentials);
+
+                const user = await User.findOne({
+                    email: credentials.email,
+                })
+
+                if (user && bcrypt.compareSync(credentials.password, user.password)) {
+                    return { 
+                        _id: user._id,
+                        name: user.name,
+                        email: user.email,
+                        image: "f",
+                        isAdmin: user.isAdmin
+                    }
+                }
+                throw new Error("invalid email or password")
+            }
+        })
+  ]
 });
