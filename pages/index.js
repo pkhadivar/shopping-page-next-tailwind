@@ -3,6 +3,8 @@ import ProductItem from "../components/ProductItem";
 import { useContext } from "react";
 import { CartContext } from "../context/Cart";
 
+import { toast } from "react-toastify"
+
 import db from "../utils/db";
 import Product from "../models/product";
 
@@ -16,6 +18,8 @@ function Home({ products }) {
     const qty = existingItem ? existingItem.qty + 1 : 1
 
     dispatch({ type: "ADD_TO_CART", payload: { ...product, qty } })
+
+    toast.success("Product added.")
   }
   return (
     <Layout title="Home page">

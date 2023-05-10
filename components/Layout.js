@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 
 import { useSession, signOut } from "next-auth/react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
 
 import Cookies from "js-cookie";
 import { Menu } from "@headlessui/react";
@@ -33,6 +35,7 @@ const Layout = ({ title, children }) => {
       <Head>
         <title>{`${title} - Shoping`}</title>
       </Head>
+      <ToastContainer position="top-right" limit={1} />
       <div className="flex min-h-screen flex-col justify-between">
         <header>
           <nav className="flex h-14 px-8 justify-between items-center border-b-4 bg-white">
