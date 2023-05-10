@@ -6,6 +6,12 @@ const connect = async () => {
   console.log("Connected.");
 };
 
-const db = { connect: connect };
+const converToObj = (doc) => {
+  doc._id = doc._id.toString();
+
+  return doc
+}
+
+const db = { connect, converToObj };
 
 export default db;
