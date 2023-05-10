@@ -9,7 +9,7 @@ const handler = async (req, res) => {
 
   await User.insertMany(users);
 
-  res.send({ message: "User added." });
+  res.send({ message: "User added!" });
 };
 
 export default handler;

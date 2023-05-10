@@ -4,7 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt from "bcryptjs"
 
 import db from "../../../utils/db"
-import User from "../../../models/user "
+import User from "../../../models/user"
 
 export default NextAuth({
   session: {
@@ -25,7 +25,7 @@ export default NextAuth({
 
         if (token?.isAdmin) session.user.isAdmin = token.isAdmin
 
-        return token
+        return session
     }
   },
 
